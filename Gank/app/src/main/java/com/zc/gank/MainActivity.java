@@ -2,6 +2,7 @@ package com.zc.gank;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.zc.gank.view.BaseView;
@@ -15,6 +16,13 @@ public class MainActivity extends AppCompatActivity implements BaseView<String>{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTv = (TextView) findViewById(R.id.tv);
+        mTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // mTv.scrollBy(0,25);
+                mTv.scrollTo(0,25);
+            }
+        });
     }
 
     @Override
