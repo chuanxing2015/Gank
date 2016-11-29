@@ -30,6 +30,10 @@ public class MyLinearLayout extends LinearLayout {
         initViewDragHelper();
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 
     private void initViewDragHelper(){
         mViewDragHelper = ViewDragHelper.create(this, 1.0f, new ViewDragHelper.Callback() {
