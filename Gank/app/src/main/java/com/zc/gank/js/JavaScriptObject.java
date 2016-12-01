@@ -1,4 +1,4 @@
-package com.zc.gank;
+package com.zc.gank.js;
 
 import android.content.Context;
 import android.webkit.JavascriptInterface;

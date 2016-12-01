@@ -19,7 +19,7 @@
         </activity>
 
         <activity android:name=".drawtest.DrawTesTActivity"/>
-        <activity android:name=".JsActivity"/>
+        <activity android:name=".js.JsActivity"/>
     </application>
 
 </manifest>

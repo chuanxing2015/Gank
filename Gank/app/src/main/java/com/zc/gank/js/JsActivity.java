@@ -1,14 +1,15 @@
-package com.zc.gank;
+package com.zc.gank.js;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Button;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 /**
@@ -79,6 +80,20 @@ public class JsActivity extends Activity {
                 }
             });
 
+            mWebView.setWebViewClient(new WebViewClient(){
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+//                    view.loadUrl("javascript:window.jsObj.setShareContent(document.getElementById('app_title').innerHTML,"
+//                            + "document.getElementById('app_desc').innerHTML,"
+//                            + "document.getElementById('app_link').innerHTML,"
+//                            + "document.getElementById('app_img_url').src,"
+//                            + "document.getElementById('app_big_img_url').src)");
+                    //自己定义方法获取html中标签中的信息
+                    view.loadUrl("javascript:window.jsObj.getTitle(document.getElementById('app_title').innerHTML)");
+                }
+            });
+
             WebSettings webSettings = mWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             webSettings.setDefaultTextEncodingName("utf-8");
@@ -92,14 +107,17 @@ public class JsActivity extends Activity {
 
     private Object getHtmlObject(){
         Object insertObj = new Object(){
+            @JavascriptInterface//注意在版本Android4.2以上，需要在被调用的函数前加上@JavascriptInterface注解。
             public String HtmlcallJava(){
                 return "Html call Java";
             }
 
+            @JavascriptInterface
             public String HtmlcallJava2(final String param){
                 return "Html call Java : " + param;
             }
 
+            @JavascriptInterface
             public void JavacallHtml(){
                 runOnUiThread(new Runnable() {
                     @Override
@@ -110,6 +128,7 @@ public class JsActivity extends Activity {
                 });
             }
 
+            @JavascriptInterface
             public void JavacallHtml2(){
                 runOnUiThread(new Runnable() {
                     @Override
@@ -118,6 +137,12 @@ public class JsActivity extends Activity {
                         Toast.makeText(JsActivity.this, "clickBtn2", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+
+            @JavascriptInterface
+            public void getTitle(String title){
+                Log.e("chuan","title : "+ title);
+                Toast.makeText(JsActivity.this, title, Toast.LENGTH_SHORT).show();
             }
         };
 
