@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.zc.gank.adapter.MyAdapter;
 import com.zc.gank.drawtest.DrawTesTActivity;
 import com.zc.gank.js.JsActivity;
+import com.zc.gank.picmemory.PicMemoryTestActivity;
 import com.zc.gank.view.BaseView;
 import com.zc.gank.view.MyListView;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements BaseView<String>,
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_draw_test).setOnClickListener(this);
         findViewById(R.id.btn_js).setOnClickListener(this);
+        findViewById(R.id.pic_memory).setOnClickListener(this);
     }
 
     @Override
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements BaseView<String>,
                 break;
             case R.id.btn_js:
                 startActivity(new Intent(this, JsActivity.class));
+                break;
+            case R.id.pic_memory:
+                startActivity(new Intent(this, PicMemoryTestActivity.class));
                 break;
         }
     }

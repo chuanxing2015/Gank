@@ -1,14 +1,18 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'groovy'//支持groovy。Groovy 是 用于Java虚拟机的一种敏捷的动态语言，它是一种成熟的面向对象编程语言，既可以用于面向对象编程，又可以用作纯粹的脚本语言。
 
 buildscript {
     repositories {
         jcenter()
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+
+        //compile localGroovy()
     }
 }
 
@@ -16,6 +20,22 @@ allprojects {
     repositories {
         jcenter()
     }
+
+    //全局设定编码
+    tasks.withType(JavaCompile){
+        options.encoding = "UTF-8"
+    }
+
+    //设置java版本
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_1_7
+        targetCompatibility = JavaVersion.VERSION_1_7
+    }
+}
+
+//支持groovy
+dependencies {
+    compile localGroovy()
 }
 
 task clean(type: Delete) {

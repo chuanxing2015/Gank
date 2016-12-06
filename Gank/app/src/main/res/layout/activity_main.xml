@@ -22,5 +22,12 @@
             android:layout_height="wrap_content"
             android:text="Js交互"/>
 
+        <Button
+            android:layout_marginTop="5dp"
+            android:id="@+id/pic_memory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="图片内存大小测试"/>
+
     </LinearLayout>
 </ScrollView>
